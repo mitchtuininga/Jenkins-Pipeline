@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
@@ -11,12 +12,13 @@ pipeline {
                 echo 'Running unit and integration tests using JUnit and Mockito.'
             }
             post {
-                success {
+                always {
                     mail to: "Chovski1@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build was successful!"
+                    subject: "Unit and Integration Tests Status Email",
+                    body: "Check the attached logs for details.",
+                    attachLog: true
                 }
-            }   
+            }
         }
         stage('Code Analysis') {
             steps {
@@ -28,12 +30,13 @@ pipeline {
                 echo 'Performing a security scan using OWASP Dependency-Check.'
             }
             post {
-                success {
+                always {
                     mail to: "Chovski1@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build was successful!"
+                    subject: "Security Scan Status Email",
+                    body: "Check the attached logs for details.",
+                    attachLog: true
                 }
-            } 
+            }
         }
         stage('Deploy to Staging') {
             steps {
