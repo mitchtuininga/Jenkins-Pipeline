@@ -11,13 +11,12 @@ pipeline {
                 echo 'Running unit and integration tests using JUnit and Mockito.'
             }
             post {
-                always {
-                    emailext to: 'Chovski1@gmail.com',
-                             subject: "Unit and Integration Tests: ${currentBuild.currentResult}",
-                             body: "See attached log for details.",
-                             attachLog: true
+                success {
+                    mail to: "Chovski1@gmail.com",
+                    subject: "Build Status Email",
+                    body: "Build was successful!"
                 }
-            }
+            }   
         }
         stage('Code Analysis') {
             steps {
@@ -29,13 +28,12 @@ pipeline {
                 echo 'Performing a security scan using OWASP Dependency-Check.'
             }
             post {
-                always {
-                    emailext to: 'Chovski1@gmail.com',
-                             subject: "Security Scan: ${currentBuild.currentResult}",
-                             body: "See attached log for details.",
-                             attachLog: true
+                success {
+                    mail to: "Chovski1@gmail.com",
+                    subject: "Build Status Email",
+                    body: "Build was successful!"
                 }
-            }
+            } 
         }
         stage('Deploy to Staging') {
             steps {
