@@ -15,7 +15,7 @@ pipeline {
                 always {
                     mail to: "Chovski1@gmail.com",
                     subject: "Unit and Integration Tests Status Email",
-                    body: "The build was: ${currentBuild.result} Logs: ...",
+                    body: "The build was: ${currentBuild.result} Logs: ..."
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
                 always {
                     mail to: "Chovski1@gmail.com",
                     subject: "Security Scan Status Email",
-                    body: "The build was: ${currentBuild.result} Logs: ...",
+                    body: "The build was: ${currentBuild.result} Logs: ..."
                 }
             }
         }
