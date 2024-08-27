@@ -17,7 +17,6 @@ pipeline {
                     mail to: "mitch.tuininga@gmail.com",
                     subject: "Unit and Integration Tests Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
-                    attachmentsPattern: "logs_unit_tests.txt"
                 }
             }
         }
@@ -36,7 +35,6 @@ pipeline {
                     mail to: "mitch.tuininga@gmail.com",
                     subject: "Security Scan Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
-                    attachmentsPattern: "logs_security_scan.txt"
                 }
             }
         }
