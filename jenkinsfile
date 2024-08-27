@@ -13,9 +13,11 @@ pipeline {
             }
             post {
                 always {
-                    mail to: "Chovski1@gmail.com",
+                    writeFile file: 'logs_unit_tests.txt', text: 'This file contains the logs of the unit and integration tests.'
+                    emailext to: "mitch.tuininga@gmail.com",
                     subject: "Unit and Integration Tests Status Email",
-                    body: "The build was a: ${currentBuild.result} \nLogs: ..."
+                    body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
+                    attachmentsPattern: "logs_unit_tests.txt"
                 }
             }
         }
@@ -30,9 +32,11 @@ pipeline {
             }
             post {
                 always {
-                    mail to: "Chovski1@gmail.com",
+                    writeFile file: 'logs_security_scan.txt', text: 'This file contains the logs of the security scan.'
+                    emailext to: "mitch.tuininga@gmail.com",
                     subject: "Security Scan Status Email",
-                    body: "The build was a: ${currentBuild.result} \nLogs: ..."
+                    body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
+                    attachmentsPattern: "logs_security_scan.txt"
                 }
             }
         }
