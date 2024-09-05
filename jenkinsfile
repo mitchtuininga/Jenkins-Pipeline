@@ -13,8 +13,7 @@ pipeline {
             }
             post {
                 always {
-                    writeFile file: 'logs_unit_tests.txt', text: 'This file contains the logs of the unit and integration tests.'
-                    mail to: "mitch.tuininga@gmail.com",
+                    emailext to: "mitch.tuininga@gmail.com",
                     subject: "Unit and Integration Tests Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
                 }
@@ -31,8 +30,7 @@ pipeline {
             }
             post {
                 always {
-                    writeFile file: 'logs_security_scan.txt', text: 'This file contains the logs of the security scan.'
-                    mail to: "mitch.tuininga@gmail.com",
+                    emailext to: "mitch.tuininga@gmail.com",
                     subject: "Security Scan Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
                 }
