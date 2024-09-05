@@ -33,9 +33,11 @@ pipeline {
             }
             post {
                 always {
-                    email to: "mitch.tuininga@gmail.com",
-                    subject: "Security Scan Status Email",
-                    body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
+                    emailext(
+                         to: "mitch.tuininga@gmail.com",
+                        subject: "Security Scan Status Email",
+                        body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
+                    )
                 }
             }
         }
