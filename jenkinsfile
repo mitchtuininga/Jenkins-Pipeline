@@ -13,7 +13,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: "mitch.tuininga@gmail.com",
+                    email to: "mitch.tuininga@gmail.com",
                     subject: "Unit and Integration Tests Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
                 }
@@ -30,7 +30,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: "mitch.tuininga@gmail.com",
+                    email to: "mitch.tuininga@gmail.com",
                     subject: "Security Scan Status Email",
                     body: "The build was a: ${currentBuild.currentResult} \nLogs: ..."
                 }
