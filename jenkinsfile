@@ -13,9 +13,11 @@ pipeline {
             }
             post {
                 always {
-                    mailext subject: "Unit and Integration Tests Status Email",
+                    mailext (
+                        subject: "Unit and Integration Tests Status Email",
                         body: "The build result is: ${currentBuild.currentResult} \nLogs and details can be found at: ...",
                         to: "mitch.tuininga@gmail.com"
+                    )
                 }
             }
         }
@@ -30,11 +32,11 @@ pipeline {
             }
             post {
                 always {
-                    mailext 
-                         
+                    mailext (
                         subject: "Security Scan Status Email",
                         body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
                         to: "mitch.tuininga@gmail.com"
+                    )
                 }
             }
         }
