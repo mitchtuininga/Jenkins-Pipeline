@@ -5,18 +5,25 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code using Maven.'
+                script {
+                    logFunction('Build completed') // Custom log function
+                }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests using JUnit and Mockito.'
+                script {
+                    logFunction('Tests executed') // Log function for tests
+                }
             }
             post {
                 always {
-                    mail (
+                    emailext (
                         subject: "Unit and Integration Tests Status Email",
                         body: "The build result is: ${currentBuild.currentResult} \nLogs and details can be found at: ...",
-                        to: "mitch.tuininga@gmail.com"
+                        to: "mitch.tuininga@gmail.com",
+                        attachmentsPattern: '**/target/*.log'
                     )
                 }
             }
@@ -24,18 +31,25 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Analysing the code using SonarQube.'
+                script {
+                    logFunction('Code analysis completed') // Log function for code analysis
+                }
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing a security scan using OWASP Dependency-Check.'
+                script {
+                    logFunction('Security scan completed') // Log function for security scan
+                }
             }
             post {
                 always {
-                    mail (
+                    emailext (
                         subject: "Security Scan Status Email",
                         body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
-                        to: "mitch.tuininga@gmail.com"
+                        to: "mitch.tuininga@gmail.com",
+                        attachmentsPattern: '**/security-scan/*.report'
                     )
                 }
             }
@@ -43,17 +57,30 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying the application to a staging server on AWS EC2.'
+                script {
+                    logFunction('Deployment to staging') // Log function for deployment
+                }
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on the staging environment using Postman.'
+                script {
+                    logFunction('Integration tests on staging completed') // Log function for integration tests
+                }
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying the application to a production server on AWS EC2.'
+                script {
+                    logFunction('Deployment to production') // Log function for production deployment
+                }
             }
         }
     }
+}
+
+def logFunction(message) {
+    echo "[LOG]: ${message}"
 }
