@@ -17,7 +17,8 @@ pipeline {
                         subject: "Unit and Integration Tests Status Email",
                         body: "The build result is: ${currentBuild.currentResult} \nLogs and details can be found at: ...",
                         to: "mitch.tuininga@gmail.com",
-                        attachmentsPattern: '**/target/*.log'
+                        attachmentsPattern: '**/target/*.log',
+                        attachLog: true // Attaches the console log
                     )
                 }
             }
@@ -37,8 +38,8 @@ pipeline {
                         subject: "Security Scan Status Email",
                         body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
                         to: "mitch.tuininga@gmail.com",
-                        attachmentsPattern: '**/security-scan/*.report'
-                        attachLog: true
+                        attachmentsPattern: '**/security-scan/*.report',
+                        attachLog: true // Attaches the console log for this stage
                     )
                 }
             }
