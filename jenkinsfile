@@ -15,7 +15,7 @@ pipeline {
                 always {
                     emailext (
                         subject: "Unit and Integration Tests Status Email",
-                        body: "The build result is: ${currentBuild.currentResult} \nLogs and details can be found at: ...",
+                        body: "The build was a: ${currentBuild.currentResult} \nLogs:\n",
                         to: "mitch.tuininga@gmail.com",
                         attachLog: true // Attaches the console log
                     )
@@ -35,7 +35,7 @@ pipeline {
                 always {
                     emailext (
                         subject: "Security Scan Status Email",
-                        body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
+                        body: "The build was a: ${currentBuild.currentResult} \nLogs:\n",
                         to: "mitch.tuininga@gmail.com",
                         attachLog: true // Attaches the console log for this stage
                     )
