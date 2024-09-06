@@ -38,6 +38,7 @@ pipeline {
                         body: "The build was a: ${currentBuild.currentResult} \nLogs: ...",
                         to: "mitch.tuininga@gmail.com",
                         attachmentsPattern: '**/security-scan/*.report'
+                        attachLog: true
                     )
                 }
             }
